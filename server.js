@@ -18,22 +18,4 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
-// Add this to your Render backend (server.js):
-const multer = require('multer');
-const upload = multer({ dest: 'uploads/temp/' });
 
-app.post(['/api/upload/short', '/upload/short'], upload.single('video'), (req, res) => {
-  if (!req.file) return res.status(400).json({ error: 'No video provided' });
-  const videoId = 'vid_' + Date.now();
-  res.status(201).json({
-    message: 'Uploaded successfully',
-    video: { 
-      id: videoId, 
-      title: req.body.title || 'Short', 
-      duration: '15.00',
-      status: 'READY', 
-      videoUrl: `/uploads/${req.file.filename}` 
-    },
-    jobId: 'job_' + videoId
-  });
-});
