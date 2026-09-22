@@ -14,12 +14,7 @@ app.get('/', (req, res) => {
   res.json({ status: 'success', message: 'Viraj Tube Backend is live and running securely!' });
 });
 
-// Server Start
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
-
-// Add this to your Render backend (server.js):
+// Multer Video Upload Route for Shorts
 const multer = require('multer');
 const upload = multer({ dest: 'uploads/temp/' });
 
@@ -38,3 +33,9 @@ app.post(['/api/upload/short', '/upload/short'], upload.single('video'), (req, r
     jobId: 'job_' + videoId
   });
 });
+
+// Server Start
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
