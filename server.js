@@ -18,4 +18,13 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
+// Short Video Upload Route
+app.post('/api/upload/short', (req, res) => {
+  try {
+    // Handle short video upload logic here
+    res.status(200).json({ success: true, message: 'Short uploaded successfully' });
+  } catch (error) {
+    res.status(500).json({ success: false, error: error.message });
+  }
+});
 
