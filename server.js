@@ -1,3 +1,18 @@
+const express = require('express');
+const cors = require('cors');
+require('dotenv').config();
+
+const app = express();
+const PORT = process.env.PORT || 3000;
+
+// Security & Middlewares
+app.use(cors());
+app.use(express.json());
+
+// Test Route
+app.get('/', (req, res) => {
+  res.json({ status: 'success', message: 'Viraj Tube Backend is live and running securely!' });
+});
 
 // Multer Video Upload Route for Shorts
 const multer = require('multer');
@@ -20,4 +35,10 @@ app.post('/api/upload/short', upload.single('video'), (req, res) => {
     jobId: 'job_' + videoId
   });
 });
+
+// Server Start
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
+
 
